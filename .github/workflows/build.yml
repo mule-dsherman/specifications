@@ -34,4 +34,4 @@ jobs:
           api-catalog create-descriptor -d mydescriptor.yaml
       - name: Publish to exchange
         run: |
-          api-catalog publish-asset -d mydescriptor.yaml
+          api-catalog publish-asset -d mydescriptor.yaml --force-publish
