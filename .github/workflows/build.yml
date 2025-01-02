@@ -32,3 +32,6 @@ jobs:
       - name: Create Descriptor file
         run: |
           api-catalog create-descriptor -d mydescriptor.yaml
+      - name: Create Descriptor file
+        run: |
+          api-catalog publish-asset -d mydescriptor.yaml --host=anypoint.mulesoft.com --organization=be8a3e1e-16ca-4dc1-b571-36813fc3681b --username=sandeep9492 --password=birdWILDCAT1432MARSMOON
