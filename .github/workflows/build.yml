@@ -16,21 +16,6 @@ jobs:
     steps:
       - name: Checkout this repo
         uses: actions/checkout@v4
-      - name: Cache Dependencies
-        uses: actions/cache@v4
-        with:
-          path: ~/.m2/repository
-          key: ${{ runner.os }}-maven-${{ hashfiles('**/pom.xml') }}
-          restore-keys: ${{ runner.os }}-maven-
-      - name: Set up JDK
-        uses: actions/setup-java@v4
-        with:
-          distribution: "zulu"
-          java-version: 17
-      - name: Set up NodeJS 16
-        uses: actions/setup-node@v4
-        with:
-          node-version: 16
       - name: Install Anypoint CLI
         run: |
           npm install -g api-catalog-cli@latest
