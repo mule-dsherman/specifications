@@ -32,7 +32,7 @@ jobs:
         ANYPOINT_ENVIRONMENT: ${{ secrets.ANYPOINT_ENV }}
       run: |
         anypoint-cli --org-id $ANYPOINT_ORG_ID exchange publish \
-          --file path/to/your-api-specification.raml \
-          --assetId your-asset-id \
-          --groupId your-group-id \
+          --file Petstore-openapi.yaml \
+          --assetId test-petstore-api \
+          --groupId be8a3e1e-16ca-4dc1-b571-36813fc3681b \
           --version 1.0.0
