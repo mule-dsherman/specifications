@@ -29,3 +29,6 @@ jobs:
       - name: Install Anypoint Catalog CLI
         run: |
           npm install -g api-catalog-cli@latest
+      - name: Create Descriptor file
+        run: |
+          api-catalog create-descriptor -d mydescriptor.yaml
