@@ -1,38 +1,39 @@
-name: Publish API to Anypoint Exchange
+name: Github Actions Workflow
 
 on:
   push:
-    branches:
-      - main  # Trigger the workflow on pushes to the main branch
+    branches: [ main ]
+
+env:
+  ANYPOINT_CLIENT_ID: ${{ secrets.CONNECTED_APP_CLIENT_ID }}
+  ANYPOINT_CLIENT_SECRET: ${{ secrets.CONNECTED_APP_CLIENT_SECRET }}
+  ANYPOINT_ORG: be8a3e1e-16ca-4dc1-b571-36813fc3681b
+  ANYPOINT_ENV: Sandbox
 
 jobs:
-  publish-api:
+  anypoint-cli:
     runs-on: ubuntu-latest
-
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
-
-    - name: Install Anypoint CLI
-      run: |
-        curl -L https://anypoint.mulesoft.com/downloads/cli/anypoint-cli-linux -o anypoint-cli
-        chmod +x anypoint-cli
-        sudo mv anypoint-cli /usr/local/bin/anypoint-cli
-
-    - name: Login to Anypoint Platform
-      env:
-        ANYPOINT_USERNAME: ${{ secrets.ANYPOINT_USERNAME }}
-        ANYPOINT_PASSWORD: ${{ secrets.ANYPOINT_PASSWORD }}
-      run: |
-        anypoint-cli --username $ANYPOINT_USERNAME --password $ANYPOINT_PASSWORD login
-
-    - name: Publish API Specification to Exchange
-      env:
-        ANYPOINT_ORG_ID: ${{ secrets.ANYPOINT_ORG }}
-        ANYPOINT_ENVIRONMENT: ${{ secrets.ANYPOINT_ENV }}
-      run: |
-        anypoint-cli --org-id $ANYPOINT_ORG_ID exchange publish \
-          --file Petstore-openapi.yaml \
-          --assetId test-petstore-api \
-          --groupId be8a3e1e-16ca-4dc1-b571-36813fc3681b \
-          --version 1.0.0
+      - name: Checkout this repo
+        uses: actions/checkout@v4
+      - name: Cache Dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashfiles('**/pom.xml') }}
+          restore-keys: ${{ runner.os }}-maven-
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: "zulu"
+          java-version: 17
+      - name: Set up NodeJS 16
+        uses: actions/setup-node@v4
+        with:
+          node-version: 16
+      - name: Install Anypoint CLI
+        run: |
+          npm install -g anypoint-cli-v4
+      - name: List Runtime Manager's applications
+        run: |
+          anypoint-cli-v4 runtime-mgr:application:list --output json
