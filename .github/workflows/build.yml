@@ -1,0 +1,11 @@
+name: Github Actions Workflow
+
+on:
+  push:
+    branches: [ main ]
+
+env:
+  ANYPOINT_CLIENT_ID: ${{ secrets.CONNECTED_APP_CLIENT_ID }}
+  ANYPOINT_CLIENT_SECRET: ${{ secrets.CONNECTED_APP_CLIENT_SECRET }}
+  ANYPOINT_ORG: be8a3e1e-16ca-4dc1-b571-36813fc3681b
+  ANYPOINT_ENV: Sandbox
