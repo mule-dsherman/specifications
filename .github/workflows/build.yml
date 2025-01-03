@@ -31,7 +31,7 @@ jobs:
           npm install -g api-catalog-cli@latest
       - name: "Find and Run Descriptor Command"
         run: |
-          find . -type f -name "az-fake-test-api.yaml" | while read spec_file; do
+          find . -type f -name "*.yaml" | while read spec_file; do
             spec_dir=$(cd "$(dirname "$spec_file")" && pwd) # Resolves to absolute path of the directory
             echo "Found specification in $spec_dir"
             api-catalog create-descriptor -d mydescriptor.yaml
