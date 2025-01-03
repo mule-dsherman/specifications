@@ -32,11 +32,10 @@ jobs:
       - name: "Find and Run Descriptor Command"
         run: |
           find . -type f -name "az-fake-test-api.yaml" | while read spec_file; do
-            spec_dir=$(dirname "$spec_file")
+            spec_dir=$(cd "$(dirname "$spec_file")" && pwd) # Resolves to absolute path of the directory
             echo "Found specification in $spec_dir"
-            cd "./test/specs/"
             api-catalog create-descriptor -d mydescriptor.yaml
-          done
+          done          
       - name: Publish to exchange
         run: |
           api-catalog publish-asset -d mydescriptor.yaml --force-publish
