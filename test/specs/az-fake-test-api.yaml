@@ -2,7 +2,7 @@
   "openapi": "3.0.1",
   "info": {
     "title": "AZ Fake REST Api",
-    "version": "v4"
+    "version": "v5"
   },
   "paths": {
     "/api/v1/Activities": {
