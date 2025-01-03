@@ -29,15 +29,12 @@ jobs:
       - name: Install Anypoint Catalog CLI
         run: |
           npm install -g api-catalog-cli@latest
-      - name: Create Descriptor file
-        run: |
-          api-catalog create-descriptor -d mydescriptor.yaml
       - name: "Find and Run Descriptor Command"
         run: |
-          find . -type f -name "api-specification.raml" | while read spec_file; do
+          find . -type f -name "az-fake-test-api.yaml" | while read spec_file; do
             spec_dir=$(dirname "$spec_file")
             echo "Found specification in $spec_dir"
-            anypoint-cli catalog:api:descriptor ${{ secrets.API_ID }} --type RAML --path "$spec_file"
+            api-catalog create-descriptor -d mydescriptor.yaml --path "$spec_file"
           done
       - name: Publish to exchange
         run: |
