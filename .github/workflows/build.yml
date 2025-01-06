@@ -28,7 +28,8 @@ jobs:
           npm install -g api-catalog-cli@latest
       - name: "Install yq (YAML Processor)"
         run: |
-          sudo apt-get update && sudo apt-get install -y yq
+          curl -sLo /usr/local/bin/yq https://github.com/mikefarah/yq/releases/download/v4.20.2/yq_linux_amd64
+          chmod +x /usr/local/bin/yq
       - name: "Find and Run Descriptor Command"
         run: |
             api-catalog create-descriptor -d catalog.yaml
