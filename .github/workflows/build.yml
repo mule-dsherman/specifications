@@ -28,20 +28,13 @@ jobs:
           npm install -g api-catalog-cli@latest
       - name: "Install yq (YAML Processor)"
         run: |
-          sudo apt-get update
-          sudo apt-get install -y jq yq
-      - name: "Modify Catalog Descriptor"
-        run: |
-          yq eval '.projects[] |= (if .main then .tags = ["codat", "gcp"] else . end)' -i mydescriptor.yaml
+          sudo apt-get update && sudo apt-get install -y yq
       - name: "Find and Run Descriptor Command"
         run: |
-          # find . -type f -name "*.yaml" | while read spec_file; do
-            # spec_dir=$(cd "$(dirname "$spec_file")" && pwd) # Resolves to absolute path of the directory
-            # echo "Found specification in $spec_dir"
-            # api-catalog create-descriptor -d catalog.yaml
-            # Add tags to the file
-            # echo -e "\ntags:\n  - sys" >> catalog.yaml
-          # done          
+            api-catalog create-descriptor -d catalog.yaml
+      - name: "Modify Descriptor Command"
+        run: |
+            yq eval '(.projects[] | select(.main)) |= (. + {tags: ["sys", "cli"]})' -i catalog.yaml 
       # - name: Publish to exchange
         # run: |
           # api-catalog publish-asset -d mydescriptor.yaml --force-publish
