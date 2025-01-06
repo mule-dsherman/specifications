@@ -32,10 +32,11 @@ jobs:
           chmod +x /usr/local/bin/yq
       - name: "Find and Run Descriptor Command"
         run: |
-            api-catalog create-descriptor -d catalog.yaml
+            api-catalog create-descriptor -d 
       - name: "Modify Descriptor Command"
         run: |
-            yq eval '.projects[] | .main += {"tags": ["sys"]}' -i catalog.yaml
+            yq eval '.projects[] |= . + {"tags": ["sys"], "categories": {"Domain": ["Healthcare"]}}' -i catalog.yaml
+
       # - name: Publish to exchange
         # run: |
           # api-catalog publish-asset -d mydescriptor.yaml --force-publish
