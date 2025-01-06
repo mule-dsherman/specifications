@@ -31,9 +31,9 @@ jobs:
           npm install -g api-catalog-cli@latest
       - name: "Find and Run Descriptor Command"
         run: |
-          find . -type f -name "*.yaml" | while read spec_file; do
-            spec_dir=$(cd "$(dirname "$spec_file")" && pwd) # Resolves to absolute path of the directory
-            echo "Found specification in $spec_dir"
+          # find . -type f -name "*.yaml" | while read spec_file; do
+            # spec_dir=$(cd "$(dirname "$spec_file")" && pwd) # Resolves to absolute path of the directory
+            # echo "Found specification in $spec_dir"
             api-catalog create-descriptor -d catalog.yaml
             # Add tags to the file
             # echo -e "\ntags:\n  - sys" >> catalog.yaml
