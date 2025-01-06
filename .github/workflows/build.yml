@@ -34,6 +34,8 @@ jobs:
           find . -type f -name "*.yaml" | while read spec_file; do
             spec_dir=$(cd "$(dirname "$spec_file")" && pwd) # Resolves to absolute path of the directory
             echo "Found specification in $spec_dir"
+            # Add tags to the file
+            echo -e "\ntags:\n  - sys" >> "$spec_file"
             api-catalog create-descriptor -d catalog.yaml
           done          
       - name: Publish to exchange
