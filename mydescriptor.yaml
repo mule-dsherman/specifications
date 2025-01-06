@@ -10,7 +10,7 @@ projects:
     categories:
       API Type:
         - Healthcare
-    version: 1.0.16
+    version: 1.0.0
     apiVersion: v1
 
   - main: test/specs/az-fake-test-api.yaml
@@ -23,5 +23,5 @@ projects:
     categories:
       API Type:
         - Healthcare
-    version: 7.0.0
+    version: 1.0.0
     apiVersion: v1
