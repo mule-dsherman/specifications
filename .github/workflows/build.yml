@@ -23,21 +23,24 @@ jobs:
       - name: Install Anypoint CLI
         run: |
           npm install -g anypoint-cli-v4
-      - name: List Runtime Manager's applications
-        run: |
-          anypoint-cli-v4 runtime-mgr:application:list --output json
       - name: Install Anypoint Catalog CLI
         run: |
           npm install -g api-catalog-cli@latest
+      - name: "Install yq (YAML Processor)"
+        run: |
+          sudo apt-get update && sudo apt-get install -y yq
+      - name: "Modify Catalog Descriptor"
+        run: |
+          yq eval '.projects[] |= (if .main then .tags = ["codat", "gcp"] else . end)' -i catalog-descriptor.yaml
       - name: "Find and Run Descriptor Command"
         run: |
           # find . -type f -name "*.yaml" | while read spec_file; do
             # spec_dir=$(cd "$(dirname "$spec_file")" && pwd) # Resolves to absolute path of the directory
             # echo "Found specification in $spec_dir"
-            api-catalog create-descriptor -d catalog.yaml
+            # api-catalog create-descriptor -d catalog.yaml
             # Add tags to the file
             # echo -e "\ntags:\n  - sys" >> catalog.yaml
           # done          
-      - name: Publish to exchange
-        run: |
-          api-catalog publish-asset -d mydescriptor.yaml --force-publish
+      # - name: Publish to exchange
+        # run: |
+          # api-catalog publish-asset -d mydescriptor.yaml --force-publish
