@@ -5,11 +5,6 @@ projects:
     contact:
       name: 'Jane Doe'
       email: 'jane.doe@org.com'
-    tags:
-      - sys
-    categories:
-      Domain:
-        - Healthcare
     version: 1.0.0
     apiVersion: v1
 
@@ -18,10 +13,5 @@ projects:
     contact:
       name: 'Jane Doe'
       email: 'jane.doe@org.com'
-    tags:
-      - sys
-    categories:
-      Domain:
-        - Healthcare
     version: 1.0.0
     apiVersion: v1
