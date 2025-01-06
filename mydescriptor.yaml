@@ -7,7 +7,11 @@ projects:
       email: 'jane.doe@org.com'
     version: 1.0.0
     apiVersion: v1
-
+    tags:
+      - sys
+    categories:
+      Domain:
+        - Healthcare
   - main: test/specs/az-fake-test-api.yaml
     assetId: az-fake-rest-api
     contact:
@@ -15,3 +19,8 @@ projects:
       email: 'jane.doe@org.com'
     version: 1.0.0
     apiVersion: v1
+    tags:
+      - sys
+    categories:
+      Domain:
+        - Healthcare
