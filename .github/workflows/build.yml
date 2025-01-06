@@ -37,7 +37,7 @@ jobs:
             api-catalog create-descriptor -d catalog.yaml
             # Add tags to the file
             # echo -e "\ntags:\n  - sys" >> catalog.yaml
-          done          
+          # done          
       - name: Publish to exchange
         run: |
           api-catalog publish-asset -d mydescriptor.yaml --force-publish
