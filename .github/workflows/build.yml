@@ -28,10 +28,11 @@ jobs:
           npm install -g api-catalog-cli@latest
       - name: "Install yq (YAML Processor)"
         run: |
-          sudo apt-get update && sudo apt-get install -y yq
+          sudo apt-get update
+          sudo apt-get install -y jq yq
       - name: "Modify Catalog Descriptor"
         run: |
-          yq eval '.projects[] |= (if .main then .tags = ["codat", "gcp"] else . end)' -i catalog-descriptor.yaml
+          yq eval '.projects[] |= (if .main then .tags = ["codat", "gcp"] else . end)' -i mydescriptor.yaml
       - name: "Find and Run Descriptor Command"
         run: |
           # find . -type f -name "*.yaml" | while read spec_file; do
