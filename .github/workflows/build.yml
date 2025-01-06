@@ -35,7 +35,7 @@ jobs:
             api-catalog create-descriptor -d catalog.yaml
       - name: "Modify Descriptor Command"
         run: |
-            yq eval '.projects[] |= . + {"tags": ["sys"], "categories": {"Domain": ["Healthcare"]}}' -i catalog.yaml
+            yq eval '.projects[] |= . + {"tags": ["sys"], "categories": {"Domain": ["Healthcare"]}}' -i mydescriptor.yaml
 
       # - name: Publish to exchange
         # run: |
