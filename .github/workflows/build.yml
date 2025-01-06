@@ -32,7 +32,7 @@ jobs:
           chmod +x /usr/local/bin/yq
       - name: "Find and Run Descriptor Command"
         run: |
-            api-catalog create-descriptor -d 
+            api-catalog create-descriptor -d catalog.yaml
       - name: "Modify Descriptor Command"
         run: |
             yq eval '.projects[] |= . + {"tags": ["sys"], "categories": {"Domain": ["Healthcare"]}}' -i catalog.yaml
