@@ -36,8 +36,8 @@ jobs:
             echo "Found specification in $spec_dir"
             api-catalog create-descriptor -d catalog.yaml
             # Add tags to the file
-            echo -e "\ntags:\n  - sys" >> catalog.yaml
+            # echo -e "\ntags:\n  - sys" >> catalog.yaml
           done          
       - name: Publish to exchange
         run: |
-          api-catalog publish-asset -d catalog.yaml --force-publish
+          api-catalog publish-asset -d mydescriptor.yaml --force-publish
