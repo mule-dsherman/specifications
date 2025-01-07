@@ -33,10 +33,12 @@ jobs:
       - name: "Find and Run Descriptor Command"
         run: |
             api-catalog create-descriptor -d catalog.yaml
-      - name: "Modify Descriptor Command"
+      - name: "Modify Descriptor file with tags and catagories"
         run: |
             yq eval '.projects[] |= . + {"tags": ["sys", "clitest"], "categories": {"Domain": ["Healthcare"]}}' -i catalog.yaml
-
+      - name: "Modify descriptor file with documentation"
+        run: |
+            yq eval '.projects[] |= . + "documentation": {"Summary": ["readme.md"]}}'
       - name: Publish to exchange
         run: |
           api-catalog publish-asset -d catalog.yaml --force-publish
