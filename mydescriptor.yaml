@@ -1,26 +1,68 @@
 #%Catalog Descriptor 1.0
+triggerConditions:
+  branches:
+    - main
+    - release/(.*)
+  tags:
+    - support
+    - release/(.*)
+
+contact:
+  name: 'John Doe'
+  email: 'john.doe@org.com'
+
+versionStrategyConditions:
+  majorIncrease:
+    branches:
+      - master
+    tags:
+      - support
+  fixed:
+    branches:
+      - develop
+
 projects:
-  - main: main/source/specs/Petstore-openapi.yaml
-    assetId: test-petstore-api
+  - main: api-spec/codat.json
+    assetId: my-awesome-api
     contact:
       name: 'Jane Doe'
       email: 'jane.doe@org.com'
-    version: 1.0.0
-    apiVersion: v1
+    documentation:
+      add: documentation/add.md
+    customFields:
+      custom: value
+      another: field
     tags:
-      - sys
-    categories:
-      Domain:
-        - Healthcare
-  - main: test/specs/az-fake-test-api.yaml
-    assetId: az-fake-rest-api
-    contact:
-      name: 'Jane Doe'
-      email: 'jane.doe@org.com'
-    version: 1.0.0
-    apiVersion: v1
+      - codat
+      - gcp
+    version: 2.0.0
+    versionStrategy: majorIncrease
+    versionStrategyConditions:
+      minorIncrease:
+        branches:
+          - main
+        tags:
+          - support
+      snapshot:
+        branches:
+          - develop
+    apiVersion: v3
+
+  - main: api-spec/billing-api.json
+    assetId: my-awesome-billing-api
+    triggerConditions:
+      user:
+        - admin
     tags:
-      - sys
+      - finance
+      - aws
     categories:
-      Domain:
-        - Healthcare
+      API Type:
+        - System API
+        - Experience API
+      Organization:
+        - Finance
+        - Billing
+    version: 1.0.0
+    versionStrategy: minorIncrease
+    apiVersion: v1
