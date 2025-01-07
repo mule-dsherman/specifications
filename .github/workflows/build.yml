@@ -55,4 +55,4 @@ jobs:
             yq eval '.projects[] |= . + {"tags": ["sys", "clitest"], "categories": {"Domain": ["Healthcare"]}, "documentation": {"Home": "README.md"}}' -i catalog.yaml
       - name: Publish to exchange
         run: |
-          api-catalog publish-asset -d catalog.yaml --force-publish
+          api-catalog publish-asset -d catalog.yaml --force-publish --trigger-criteria=branches:main --version-strategy-criteria=branches:main
