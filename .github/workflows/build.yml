@@ -35,15 +35,8 @@ jobs:
             api-catalog create-descriptor -d catalog.yaml
       - name: "Modify Descriptor Command"
         run: |
-            yq eval '.projects[] |= . + {"tags": ["sys"], "categories": {"Domain": ["Healthcare"]}}' -i mydescriptor.yaml
-      - name: Commit changes
-        run: |
-          git config user.name "GitHub Actions"
-          git config user.email "actions@github.com"
-          git add mydescriptor.yaml
-          git commit -m "Add tags and categories fields to all projects"
-          git push
+            yq eval '.projects[] |= . + {"tags": ["sys", "clitest"], "categories": {"Domain": ["Healthcare"]}}' -i catalog.yaml
 
-      # - name: Publish to exchange
-        # run: |
-          # api-catalog publish-asset -d mydescriptor.yaml --force-publish
+      - name: Publish to exchange
+        run: |
+          api-catalog publish-asset -d catalog.yaml --force-publish
