@@ -33,6 +33,23 @@ jobs:
       - name: "Find and Run Descriptor Command"
         run: |
             api-catalog create-descriptor -d catalog.yaml
+      - name: "Upadte descriptor file with versions and trigger conditions"
+        run: |
+            yq eval '{
+              "triggerConditions": {
+                "branches": ["main"]
+              },
+              "contact": {
+                "name": "John Doe",
+                "email": "john.doe@org.com"
+              },
+              "versionStrategyConditions": {
+                "majorIncrease": {
+                  "branches": ["main"]
+                }
+              }
+            } * .' -i catalog.yaml
+
       - name: "Modify Descriptor file with tags and catagories"
         run: |
             yq eval '.projects[] |= . + {"tags": ["sys", "clitest"], "categories": {"Domain": ["Healthcare"]}, "documentation": {"Home": "README.md"}}' -i catalog.yaml
