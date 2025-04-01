@@ -11,8 +11,8 @@ env:
   ANYPOINT_CLIENT_SECRET: ${{ secrets.CONNECTED_APP_CLIENT_SECRET }}
   ORG_ID: ${{ secrets.ORD_ID }}
   ANYPOINT_ENV: Sandbox
-  ANYPOINT_USERNAME: ${{ secrets.ANYPOINT_USERNAME }}
-  ANYPOINT_PASSWORD: ${{ secrets.ANYPOINT_PASSWORD }}
+  #ANYPOINT_USERNAME: ${{ secrets.ANYPOINT_USERNAME }}
+  #ANYPOINT_PASSWORD: ${{ secrets.ANYPOINT_PASSWORD }}
   
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
@@ -36,7 +36,7 @@ jobs:
       - name: "Find and Run Descriptor Command"
         run: |
             api-catalog create-descriptor -d catalog.yaml
-      - name: "Upadte descriptor file with versions and trigger conditions"
+      - name: "Update descriptor file with versions and trigger conditions"
         run: |
             yq eval '{
               "triggerConditions": {
