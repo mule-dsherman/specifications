@@ -11,6 +11,9 @@ env:
   #ANYPOINT_CLIENT_SECRET: ${{ secrets.CONNECTED_APP_CLIENT_SECRET }}
   ORG_ID: ${{ secrets.ORD_ID }}
   ANYPOINT_ENV: Sandbox
+  ANYPOINT_USERNAME: ${{ secrets.ANYPOINT_USERNAME }}
+  ANYPOINT_PASSWORD: ${{ secrets.ANYPOINT_PASSWORD }}
+  
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -18,6 +21,7 @@ jobs:
     # Build Ubuntu
     runs-on: ubuntu-latest
     # A workflow run is made up of one or more jobs that can run sequentially or in parallel
+    #api-catalog publish-asset -d catalog.yaml --force-publish --trigger-criteria=branches:main --bearer="4539c20e-b686-4814-8fc2-7f53a0ff0ee6"  --organization="$ORG_ID" 
     steps:
       - name: Check out repository code
         uses: actions/checkout@v2
@@ -44,8 +48,7 @@ jobs:
               }
             } * .' -i catalog.yaml
       - name: Publish to exchange
-        run: |
-          api-catalog publish-asset -d catalog.yaml --force-publish --trigger-criteria=branches:main --bearer="4539c20e-b686-4814-8fc2-7f53a0ff0ee6"  --organization="$ORG_ID" 
-
+        run: |        
+          api-catalog publish-asset --organization="$ORG_ID" --username="$ANYPOINT_USERNAME" --password="$ANYPOINT_PASSWORD"
 
 
