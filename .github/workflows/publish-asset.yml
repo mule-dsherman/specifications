@@ -49,6 +49,6 @@ jobs:
             } * .' -i catalog.yaml
       - name: Publish to exchange
         run: |        
-          api-catalog publish-asset -d catalog.yaml --force-publish --trigger-criteria=branches:main --client_id=$ANYPOINT_CLIENT_ID" --client_secret=$ANYPOINT_CLIENT_SECRET --organization="5a852aca-2f5b-4609-a78f-5709f06247ad" 
+          api-catalog publish-asset -d catalog.yaml --force-publish --trigger-criteria=branches:main --client_id=$ANYPOINT_CLIENT_ID" --client_secret=$ANYPOINT_CLIENT_SECRET --organization=5a852aca-2f5b-4609-a78f-5709f06247ad 
 
 
