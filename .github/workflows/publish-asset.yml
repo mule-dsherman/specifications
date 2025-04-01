@@ -9,7 +9,7 @@ on:
 env:
   ANYPOINT_CLIENT_ID: ${{ secrets.CONNECTED_APP_CLIENT_ID }}
   ANYPOINT_CLIENT_SECRET: ${{ secrets.CONNECTED_APP_CLIENT_SECRET }}
-  ANYPOINT_ORG: be8a3e1e-16ca-4dc1-b571-36813fc3681b
+  ORG_ID: ${{ secrets.ORD_ID }}
   ANYPOINT_ENV: Sandbox
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
