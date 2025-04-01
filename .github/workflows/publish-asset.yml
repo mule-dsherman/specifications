@@ -7,8 +7,8 @@ on:
   push:
     branches: [ main ]
 env:
-  #ANYPOINT_CLIENT_ID: ${{ secrets.CONNECTED_APP_CLIENT_ID }}
-  #ANYPOINT_CLIENT_SECRET: ${{ secrets.CONNECTED_APP_CLIENT_SECRET }}
+  ANYPOINT_CLIENT_ID: ${{ secrets.CONNECTED_APP_CLIENT_ID }}
+  ANYPOINT_CLIENT_SECRET: ${{ secrets.CONNECTED_APP_CLIENT_SECRET }}
   ORG_ID: ${{ secrets.ORD_ID }}
   ANYPOINT_ENV: Sandbox
   ANYPOINT_USERNAME: ${{ secrets.ANYPOINT_USERNAME }}
@@ -49,6 +49,6 @@ jobs:
             } * .' -i catalog.yaml
       - name: Publish to exchange
         run: |        
-          api-catalog publish-asset --organization="$ORG_ID" --username="$ANYPOINT_USERNAME" --password="$ANYPOINT_PASSWORD"
+          api-catalog publish-asset -d catalog.yaml --force-publish --trigger-criteria=branches:main --client_id=$ANYPOINT_CLIENT_ID" --client_secret=$ANYPOINT_CLIENT_SECRET"
 
 
