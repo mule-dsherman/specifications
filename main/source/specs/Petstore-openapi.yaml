@@ -1,6 +1,6 @@
 openapi: 3.0.3
 info:
-  title: Petstore Server API.
+  title: Petstore Server API
   description: |-
     This is a sample Pet Store Server based on the OpenAPI 3.0 specification.
   termsOfService: http://swagger.io/terms/
