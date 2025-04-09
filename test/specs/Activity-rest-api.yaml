@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.1",
   "info": {
-    "title": "Activity Rest Api.",
+    "title": "Activity Rest Api HighLevel",
     "version": "v1"
   },
   "paths": {
